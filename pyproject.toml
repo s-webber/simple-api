@@ -1,0 +1,50 @@
+[project]
+name = "github-stats"
+version = "0.1.0"
+description = "A FastAPI service for GitHub repository statistics"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi",
+    "httpx",
+    "uvicorn",
+]
+
+[project.optional-dependencies]
+dev = [
+    "mypy",
+    "pre-commit",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov",
+    "ruff",
+]
+
+docs = [
+    "mkdocs-material",
+    "mkdocstrings[python]",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.mypy]
+strict = true
+plugins = ["pydantic.mypy"]
+
+[tool.coverage.run]
+source = ["app"]
+
+[tool.coverage.report]
+exclude_also = [
+    "if TYPE_CHECKING:",
+    "if __name__ == .__main__.:",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=app --cov-report=html --cov-report=term-missing --cov-fail-under=80"
+asyncio_mode = "auto"
