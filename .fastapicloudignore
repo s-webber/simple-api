@@ -1,0 +1,3 @@
+# Ignore additional files not in .gitignore
+tests/
+docs/

@@ -2,20 +2,21 @@ A small FastAPI application.
 
 Setup
 ```
-python -m venv venv
-venv\Scripts\activate
-pip install -e ".[dev,docs]"
+uv sync
 pre-commit install
 ```
 
 Quality checks
 ```
-ruff check . && ruff format --check . && mypy app && pytest
+uv run ruff check .
+uv run ruff format --check .
+uv run mypy app
+uv run pytest
 ```
 
 Start application
 ```
-uvicorn app.main:app --reload
+uv run fastapi run
 ```
 
 Once the application is running, access Swagger documentation at:
